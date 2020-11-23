@@ -1,3 +1,7 @@
+<?php
+// Start the session
+session_start();
+?>
 <?php include 'config.php';?>
 <!DOCTYPE html>
 <HTML lang="lv">
@@ -19,8 +23,8 @@
 if (!isset($_GET["action"])) {
 	echo "<h2>Esiet sveicināti administratora panelī!</h2>";	
 } else {
-	if ($_GET["action"] == 'editpages') { include 'editpages.php'; }
-	if ($_GET["action"] == 'blog') { include 'blog.php'; }
+	if ($_GET["action"] == 'editpages' and isset($_COOKIE["user"])) { include 'editpages.php'; } else if ($_GET["action"] == 'editpages' and !isset($_COOKIE["user"])) {include 'login.php';}
+	if ($_GET["action"] == 'blog' and isset($_COOKIE["user"])) { include 'blog.php';  }else if ($_GET["action"] == 'blog' and !isset($_COOKIE["user"])) {include 'login.php';}
 	if ($_GET["action"] == 'install') { include 'install.php'; }
 	
 }

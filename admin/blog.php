@@ -1,4 +1,5 @@
 <?php
+
 //BLOGA IERAKSTU IEVIETOŠANA
 if ((isset($_POST['submit']))&&(!isset($_GET['edit']))) { 
 //ievietošana notiek tikai tad, kad tika aizpildīta forma un nospiesta submit poga, kā arī ja saitē nav atrodams "edit"

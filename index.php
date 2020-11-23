@@ -67,10 +67,11 @@ $result_comments = $conn->query($sql_comments);
 if ($result_comments->num_rows > 0) {
   // output data of each row
   while($row_comments = $result_comments->fetch_assoc()) {
-	
+	echo '<div style="border-style: solid;width:300px">';
 	echo '<h3>',$row_comments["username"],'</h3>';
 	// echo '<span>Publicēts: ',$row["created_at"],'</span>';
 	echo '<p>',$row_comments["comment"],'</p>';
+	echo '</div>';
   }
   
 
