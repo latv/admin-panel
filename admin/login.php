@@ -1,4 +1,7 @@
-
+<?php
+// Start the session
+// session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,9 +81,12 @@ $sql= 'SELECT * FROM `user` WHERE user="'.$_POST["user"].'" AND password="'.md5(
 $result = $conn->query($sql);
 $e2=$result->num_rows;
 if ($e2>0) {
+$row = $result->fetch_assoc();
     
 echo "<p>Šāds ieraksta lietotājs jau eksistē!</p>";
-setcookie("user", $_POST["user"], time()+3600);
+$_SESSION["SIGNED_IN"] = true;
+$_SESSION["user"] = $row["user"];
+$_SESSION["role"] = $row["role"];
 header("Location:index.php");
 
 }else 

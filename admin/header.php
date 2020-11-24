@@ -6,13 +6,19 @@
   <li><a href="index.php?action=blog">Blogs</a></li>
   <li><a href="index.php?action=install">Uzstādīt</a></li>
   <li><a href="index.php?action=comment">komentāru administrēšana</a></li>
+  <li><a href="index.php?action=login">Ielogošana</a></li>
   <?php
   if (isset($_GET["submit"])){
-    setcookie("user", "", time() - 3600);
+    
+    // remove all session variables
+    session_unset();
+
+    // destroy the session
+    session_destroy();
   }
   
-  if (isset($_COOKIE["user"])){
-    echo '<li style="float:right"><a href="?submit=">izziet no lietotāja '.$_COOKIE["user"].'</a></li>';
+  if (isset($_SESSION["user"])){
+    echo '<li style="float:right"><a href="?submit=">izziet no lietotāja '.$_SESSION["user"].'</a></li>';
   } 
   
   ?>

@@ -23,9 +23,11 @@ session_start();
 if (!isset($_GET["action"])) {
 	echo "<h2>Esiet sveicināti administratora panelī!</h2>";	
 } else {
-	if ($_GET["action"] == 'editpages' and isset($_COOKIE["user"])) { include 'editpages.php'; } else if ($_GET["action"] == 'editpages' and !isset($_COOKIE["user"])) {include 'login.php';}
-	if ($_GET["action"] == 'blog' and isset($_COOKIE["user"])) { include 'blog.php';  }else if ($_GET["action"] == 'blog' and !isset($_COOKIE["user"])) {include 'login.php';}
-	if ($_GET["action"] == 'comment' and isset($_COOKIE["user"])) { include 'comment.php';  }else if ($_GET["action"] == 'comment' and !isset($_COOKIE["user"])) {include 'login.php';}
+	if ($_GET["action"] == 'editpages' and isset($_SESSION["SIGNED_IN"])) { include 'editpages.php'; } else if ($_GET["action"] == 'editpages' and !isset($_SESSION["SIGNED_IN"])) {include 'login.php';}
+	if ($_GET["action"] == 'blog' and isset($_SESSION["SIGNED_IN"])) { include 'blog.php';  }else if ($_GET["action"] == 'blog' and !isset($_SESSION["SIGNED_IN"])) {include 'login.php';}
+	if ($_GET["action"] == 'comment' and isset($_SESSION["SIGNED_IN"])) { include 'comment.php';  }else if ($_GET["action"] == 'comment' and !isset($_SESSION["SIGNED_IN"])) {include 'login.php';}
+	if ($_GET["action"] == 'login' and isset($_SESSION["SIGNED_IN"])) { echo "<p>Esi jau ielogojies</p>";  }else if ($_GET["action"] == 'login' and !isset($_SESSION["SIGNED_IN"])) {include 'login.php';}
+	
 	if ($_GET["action"] == 'install') { include 'install.php'; }
 	
 }

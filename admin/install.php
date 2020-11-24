@@ -72,6 +72,7 @@ $sql="CREATE TABLE user (
 	id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	user varchar(255),
 	password varchar(255),
+	role varchar(255),
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )";
 

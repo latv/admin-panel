@@ -82,8 +82,8 @@ if (isset($_POST["submit"])){
 
  
 
-        $sql = "INSERT INTO user (user,password)
-VALUES ('".$_POST["user"]."', '".md5($_POST["password"])."')";
+        $sql = "INSERT INTO user (user,password,role)
+VALUES ('".$_POST["user"]."', '".md5($_POST["password"])."','user')";
 if ($conn->query($sql) === TRUE) {
     echo "lietotājs '".$_POST["user"]."' veiksmīgi pievienots!<br><br>";
   } else {
