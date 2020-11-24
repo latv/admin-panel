@@ -25,6 +25,7 @@ if (!isset($_GET["action"])) {
 } else {
 	if ($_GET["action"] == 'editpages' and isset($_COOKIE["user"])) { include 'editpages.php'; } else if ($_GET["action"] == 'editpages' and !isset($_COOKIE["user"])) {include 'login.php';}
 	if ($_GET["action"] == 'blog' and isset($_COOKIE["user"])) { include 'blog.php';  }else if ($_GET["action"] == 'blog' and !isset($_COOKIE["user"])) {include 'login.php';}
+	if ($_GET["action"] == 'comment' and isset($_COOKIE["user"])) { include 'comment.php';  }else if ($_GET["action"] == 'comment' and !isset($_COOKIE["user"])) {include 'login.php';}
 	if ($_GET["action"] == 'install') { include 'install.php'; }
 	
 }

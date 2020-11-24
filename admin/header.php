@@ -5,6 +5,7 @@
   <li><a href="index.php?action=editpages">Lapas</a></li>
   <li><a href="index.php?action=blog">Blogs</a></li>
   <li><a href="index.php?action=install">Uzstādīt</a></li>
+  <li><a href="index.php?action=comment">komentāru administrēšana</a></li>
   <?php
   if (isset($_GET["submit"])){
     setcookie("user", "", time() - 3600);
