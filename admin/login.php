@@ -112,7 +112,7 @@ header("Location:index.php");
 
   <div class="container" style="background-color:#f1f1f1">
     <!-- <button type="button" class="cancelbtn">Cancel</button> -->
-    <span class="psw"> <a href="signup.php">piereģistrēt</a></span>
+    <span class="psw"> <a href="index.php?action=signup">piereģistrēt</a></span>
   </div>
 </form>
 

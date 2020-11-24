@@ -109,12 +109,7 @@ if ($conn->query($sql) === TRUE) {
 
     <label for="password-repeat"><b>Repeat Password</b></label>
     <input type="password" placeholder="Repeat Password" name="password-repeat" required>
-    
-    <label>
-      <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-    </label>
-    
-    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
 
 
       <button type="submit" class="signupbtn" name="submit">Sign Up</button>

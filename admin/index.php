@@ -29,6 +29,7 @@ if (!isset($_GET["action"])) {
 	if ($_GET["action"] == 'login' and isset($_SESSION["SIGNED_IN"])) { echo "<p>Esi jau ielogojies</p>";  }else if ($_GET["action"] == 'login' and !isset($_SESSION["SIGNED_IN"])) {include 'login.php';}
 	
 	if ($_GET["action"] == 'install') { include 'install.php'; }
+	if ($_GET["action"] == 'signup') { include 'signup.php'; }
 	
 }
 
