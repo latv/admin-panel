@@ -28,6 +28,7 @@ $sql="CREATE TABLE posts (
 	title varchar(255),
 	slug varchar(255),
 	content text,
+	user varchar(255),
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )";
 

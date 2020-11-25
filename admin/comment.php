@@ -17,7 +17,9 @@ if (isset($_POST['submit']))
 
 if(isset($_GET['delete'])){
     
-    if ($_SESSION["role"]==="admin"){
+
+
+    if ($_SESSION["role"]==="admin" ){
     $sql = "DELETE FROM comment WHERE id=".$_GET["delete"];
     
     if ($conn->query($sql) === TRUE) {
@@ -25,7 +27,7 @@ if(isset($_GET['delete'])){
     } else {
       echo "Kļūda dzēšot komentāru: " . $sql . "<br>" . $conn->error . "<br>";
     }} else{
-      echo "Nav adminastratora tiesības";
+      echo "Nav adminastratora tiesības vai nav tavējais ieraksts";
     }
 }
 
