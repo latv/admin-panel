@@ -20,8 +20,8 @@ if (($e1>0)or($e2>0)) {
 } else {
 
 
-$sql = "INSERT INTO posts (title, slug, content, user)
-VALUES ('".$_POST["posttitle"]."', '".$_POST["postslug"]."', '".$_POST["postcontent"]."', '".$_SESSION["user"]."')";
+$sql = "INSERT INTO posts (title, slug, content)
+VALUES ('".$_POST["posttitle"]."', '".$_POST["postslug"]."', '".$_POST["postcontent"]."')";
 
 if ($conn->query($sql) === TRUE) {
   echo "Ieraksts '".$_POST["posttitle"]."' veiksmīgi pievienots!<br><br>";
@@ -51,79 +51,36 @@ if ($conn->query($sql) === TRUE) {
 
 
 if(isset($_GET["edit"])) {
+$sql = "SELECT * FROM posts WHERE id=".$_GET["edit"];
+$result = $conn->query($sql);
 
-    // Parbauda vai tas ir tāvējais ieraksts
-    $sql = "SELECT * FROM posts where id=".$_GET["edit"];
-    $result = $conn->query($sql);
-    
-    
-    
-    if ($result->num_rows > 0) {
-      // output data of each row
-      while($row = $result->fetch_assoc()) {
-    
-    
-    
-          $user = $row["user"];
-  
-    
-       
-  }}
-
-  if ($_SESSION["user"]===$user or $_SESSION["role"] === "admin"){
-
-  $sql = "SELECT * FROM posts WHERE id=".$_GET["edit"];
-  $result = $conn->query($sql);
-  
-  if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc(); 
-  }	
-  
-  ?>
-  <h2><?php if(isset($_GET["edit"])) 
-    {echo "Rediģēt bloga ierakstu";} else {echo "Pievienot bloga ierakstu";}  ?></h2>
-  <form action="" method="post">
-  <input type="text" name="posttitle" placeholder="Ieraksta nosaukums" value="<?php if(isset($_GET["edit"])) {echo $row["title"];} ?>" required><br><br>
-  <input type="text" name="postslug" placeholder="Ieraksta īsceļš" value="<?php if(isset($_GET["edit"])) {echo $row["slug"];} ?>" required><br><br>
-  <textarea name="postcontent" placeholder="Ieraksta saturs" rows="7" cols="70"><?php if(isset($_GET["edit"])) {echo $row["content"];} ?></textarea><br><br>
-  <input type="submit" name="submit" value="<?php if(isset($_GET["edit"])) 
-    {echo "Atjaunināt";} else {echo "Saglabāt";}  ?>">
-  </form>
-  <h2>Izveidotie bloga ieraksti</h2>
-  <?php
-}else{
-  echo "<p>Nav piekluve rediģēt ierakstu</p>";
-}}
+if ($result->num_rows > 0) {
+  $row = $result->fetch_assoc(); 
+}	
+}
+?>
+<h2><?php if(isset($_GET["edit"])) 
+	{echo "Rediģēt bloga ierakstu";} else {echo "Pievienot bloga ierakstu";}  ?></h2>
+<form action="" method="post">
+<input type="text" name="posttitle" placeholder="Ieraksta nosaukums" value="<?php if(isset($_GET["edit"])) {echo $row["title"];} ?>" required><br><br>
+<input type="text" name="postslug" placeholder="Ieraksta īsceļš" value="<?php if(isset($_GET["edit"])) {echo $row["slug"];} ?>" required><br><br>
+<textarea name="postcontent" placeholder="Ieraksta saturs" rows="7" cols="70"><?php if(isset($_GET["edit"])) {echo $row["content"];} ?></textarea><br><br>
+<input type="submit" name="submit" value="<?php if(isset($_GET["edit"])) 
+	{echo "Atjaunināt";} else {echo "Saglabāt";}  ?>">
+</form>
+<h2>Izveidotie bloga ieraksti</h2>
+<?php
 
 //Dzēst bloga ierakstus
 if(isset($_GET['delete'])){
 
-  $sql = "SELECT * FROM posts where id=".$_GET["delete"];
-  $result = $conn->query($sql);
-  
-  
-  
-  if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-  
-  
-  
-        $user = $row["user"];
-
-  
-     
-    }}
-
-if ($user===$_SESSION["user"] or $_SESSION["role"] === "admin"){
 $sql = "DELETE FROM posts WHERE id=".$_GET["delete"];
 
 if ($conn->query($sql) === TRUE) {
   echo "Ieraksts (id=".$_GET["delete"].") veiksmīgi izdzēsts!<br>";
 } else {
   echo "Kļūda dzēšot ierakstu: " . $sql . "<br>" . $conn->error . "<br>";
-}}
-else echo "<p>Nav tavs bloga ieraksts</p>";
+}
 }
 
 //IZDRUKĀT visus izveidotos bloga ierakstus
@@ -141,15 +98,4 @@ if ($result->num_rows > 0) {
   echo "Nav ierakstu!";
 }
 ?>
-
-
-
-
-
-
-
-
-
-
-
 
