@@ -19,7 +19,9 @@ search: <input type="text" name="name"><br>
 <?php
 if (isset($_POST["submit"])){
   $notFound=TRUE;
-    $sql = 'SELECT * from pages WHERE title LIKE "%'.$_POST["name"].'%" or slug LIKE "%'.$_POST["name"].'%" or content LIKE "%'.$_POST["name"].'%"';
+    $sql = 'SELECT * from pages WHERE title LIKE "%'.$_POST["name"].'%" or slug LIKE "%'.
+    
+    $_POST["name"].'%" or content LIKE "%'.$_POST["name"].'%"';
     $result_comments = $conn->query($sql);
     if ($result_comments->num_rows > 0) {
       $notFound=FALSE;
@@ -29,9 +31,11 @@ if (isset($_POST["submit"])){
 
         <table style="width:100%">
 <tr>
-  <th>tittle</th>
-  <th>slug</th>
-  <th>content</th>
+  <th>nosaukums</th>
+  <th>īscels</th>
+  <th>saturs</th>
+  <th>rediģēt</th>
+  <th>dzēst</th>
 </tr>
 
 
@@ -39,7 +43,9 @@ if (isset($_POST["submit"])){
 
         while($row = $result_comments->fetch_assoc()) {
         
-          echo "<tr><td>".$row["title"]."</td><td>".$row["slug"]."</td><td>".$row["content"]."</td><tr>";
+          echo "<tr><td>".$row["title"]."</td><td>".$row["slug"]."</td><td>".$row["content"].
+          "</td><td>"."<a href='index.php?action=search&editpageid=".$row["id"]."'>rediģēt</a>".
+          "</td><td>"."<button>dzēst</button>"."</td><tr>";
          
         }
         ?>
@@ -47,7 +53,8 @@ if (isset($_POST["submit"])){
         </table>
         <?php
       }
-    $sql = 'SELECT * from posts WHERE title LIKE "%'.$_POST["name"].'%" or slug LIKE "%'.$_POST["name"].'%" or content LIKE "%'.$_POST["name"].'%"';
+    $sql = 'SELECT * from posts WHERE title LIKE "%'.$_POST["name"].'%" or slug LIKE "%'.$_POST["name"].
+    '%" or content LIKE "%'.$_POST["name"].'%"';
     $result_comments = $conn->query($sql);
     if ($result_comments->num_rows > 0) {
       $notFound=FALSE;
@@ -75,7 +82,8 @@ if (isset($_POST["submit"])){
         <?php
 
       }
-      $sql = 'SELECT * from comment INNER JOIN posts on comment.post_id=posts.id WHERE username LIKE "%'.$_POST["name"].'%" or comment LIKE "%'.$_POST["name"].'%"';
+      $sql = 'SELECT * from comment INNER JOIN posts on comment.post_id=posts.id WHERE username LIKE "%'.
+      $_POST["name"].'%" or comment LIKE "%'.$_POST["name"].'%"';
       $result_comments = $conn->query($sql);
       if ($result_comments->num_rows > 0) {
         $notFound=FALSE;
