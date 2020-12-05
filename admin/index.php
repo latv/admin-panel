@@ -27,7 +27,8 @@ if (!isset($_GET["action"])) {
 	if ($_GET["action"] == 'blog' and isset($_SESSION["SIGNED_IN"])) { include 'blog.php';  }else if ($_GET["action"] == 'blog' and !isset($_SESSION["SIGNED_IN"])) {include 'login.php';}
 	if ($_GET["action"] == 'comment' and isset($_SESSION["SIGNED_IN"])) { include 'comment.php';  }else if ($_GET["action"] == 'comment' and !isset($_SESSION["SIGNED_IN"])) {include 'login.php';}
 	if ($_GET["action"] == 'login' and isset($_SESSION["SIGNED_IN"])) { echo "<p>Esi jau ielogojies</p>";  }else if ($_GET["action"] == 'login' and !isset($_SESSION["SIGNED_IN"])) {include 'login.php';}
-	
+	if ($_GET["action"] == 'search' and isset($_SESSION["SIGNED_IN"])) { include 'search.php';  }else if ($_GET["action"] == 'search' and !isset($_SESSION["SIGNED_IN"])) {include 'login.php';}
+	// if ($_GET["action"] == 'search') { include 'search.php'; }
 	if ($_GET["action"] == 'install') { include 'install.php'; }
 	if ($_GET["action"] == 'signup') { include 'signup.php'; }
 	

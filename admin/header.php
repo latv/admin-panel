@@ -7,6 +7,7 @@
   <li><a href="index.php?action=install">Uzstādīt</a></li>
   <li><a href="index.php?action=comment">komentāru administrēšana</a></li>
   <li><a href="index.php?action=login">Ielogošana</a></li>
+  <li><a href="index.php?action=search">Meklēt</a></li>
   <?php
   if (isset($_GET["submit"])){
     

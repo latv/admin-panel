@@ -75,3 +75,6 @@ html, body, h1 {
   background-color: #4CAF50;
 }
 
+table, th, td {
+  border: 1px solid black;
+}
