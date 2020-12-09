@@ -1,4 +1,25 @@
 <?php
+
+function order_number($conn){
+  $sql = "SELECT * FROM pages order by order_number ASC";
+  $result = $conn->query($sql);
+  
+  if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+    // echo '<p><a href="?action=blog&delete=',$row["id"],'">dzēst</a>';
+    // echo ' <a href="?action=blog&edit=',$row["id"],'">rediģēt</a>';
+    //  	echo ' ',$row["id"],'. ',$row["title"],' (/',$row["slug"],')'.''.'</p>';
+    $lastNumber=$row["order_number"];
+    
+    }
+    return $lastNumber+1;
+  } else {
+    return 1;
+  }
+  
+  }
+
 if ((isset($_POST['submit']))&&(!isset($_GET['edit']))) { 
 //ievietošana notiek tikai tad, kad tika aizpildīta forma un nospiesta submit poga, kā arī ja saitē nav atrodams "edit"
 	
@@ -18,8 +39,8 @@ if (($e1>0)or($e2>0)) {
 } else {
 
 
-$sql = "INSERT INTO pages (title, slug, content)
-VALUES ('".$_POST["pagetitle"]."', '".$_POST["pageslug"]."', '".$_POST["pagecontent"]."')";
+$sql = "INSERT INTO pages (title, slug, content, order_number)
+VALUES ('".$_POST["pagetitle"]."', '".$_POST["pageslug"]."', '".$_POST["pagecontent"]."', '".$_POST["order_number"]."')";
 
 if ($conn->query($sql) === TRUE) {
   echo "Lapa '".$_POST["pagetitle"]."' veiksmīgi pievienota!<br><br>";
@@ -36,6 +57,7 @@ $sql = "UPDATE pages SET
 title='".$_POST["pagetitle"]."',
 slug='".$_POST["pageslug"]."',
 content='".$_POST["pagecontent"]."'
+order_number='".$_POST["order_number"]."'
 WHERE id=".$_GET['edit'];
 
 if ($conn->query($sql) === TRUE) {
@@ -64,6 +86,7 @@ if ($result->num_rows > 0) {
 <input type="text" name="pagetitle" placeholder="Lapas nosaukums" value="<?php if(isset($_GET["edit"])) {echo $row["title"];} ?>" required><br><br>
 <input type="text" name="pageslug" placeholder="Lapas īsceļš" value="<?php if(isset($_GET["edit"])) {echo $row["slug"];} ?>" required><br><br>
 <textarea name="pagecontent" placeholder="Lapas saturs" rows="7" cols="70"><?php if(isset($_GET["edit"])) {echo $row["content"];} ?></textarea><br><br>
+<input type="number" name="order_number"  value="<?php if(isset($_GET["edit"])) {echo $row["slug"];}else { echo order_number($conn);} ?>" required><br><br>
 <input type="submit" name="submit" value="<?php if(isset($_GET["edit"])) 
 	{echo "Atjaunināt";} else {echo "Saglabāt";}  ?>">
 </form>
@@ -83,7 +106,7 @@ if ($conn->query($sql) === TRUE) {
 }
 
 //IZDRUKĀT visas izveidotās sadaļas
-$sql = "SELECT * FROM pages";
+$sql = "SELECT * FROM pages order by order_number ASC";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -91,7 +114,7 @@ if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
 	echo '<p><a href="?action=editpages&delete=',$row["id"],'">dzēst</a>';
 	echo ' <a href="?action=editpages&edit=',$row["id"],'">rediģēt</a>';
-   	echo ' ',$row["id"],'. ',$row["title"],' (/',$row["slug"],')</p>';
+   	echo ' ',$row["id"],'. ',$row["title"],' (/',$row["slug"],', ',$row["order_number"],')</p>';
   }
 } else {
   echo "nav sadaļu";

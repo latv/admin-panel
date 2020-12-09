@@ -3,7 +3,7 @@
 <ul>
 <?php
 //IZDRUKĀT sadaļu nosaukumus kā pogas (saites) no datubāzes
-$sql = "SELECT * FROM pages";
+$sql = "SELECT * FROM pages order by order_number ASC";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

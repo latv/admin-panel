@@ -8,7 +8,8 @@ $sql="CREATE TABLE pages (
 	id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	title varchar(255),
 	slug varchar(255),
-	content text
+	content text,
+	order_number int
 )";
 
 if ($conn->query($sql) === TRUE) {
