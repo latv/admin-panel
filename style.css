@@ -21,6 +21,8 @@ h1 {
 #page {
     width: 100%;
     min-height: 550px;
+    margin-left: 20px;
+    margin-top: 15px;
     /* float: left; */
 }
 
@@ -74,4 +76,9 @@ h1 {
 
 #menu .active {
     background-color: #4CAF50;
+}
+
+.not-found {
+    margin-left: 10px;
+    margin-top: 10px;
 }

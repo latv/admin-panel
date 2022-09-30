@@ -20,8 +20,8 @@ if (($e1>0)or($e2>0)) {
 } else {
 
 
-$sql = "INSERT INTO posts (title, slug, content)
-VALUES ('".$_POST["posttitle"]."', '".$_POST["postslug"]."', '".$_POST["postcontent"]."')";
+$sql = "INSERT INTO posts (id, title, slug, content)
+VALUES ('".$_POST["id"]."' , '".$_POST["posttitle"]."', '".$_POST["postslug"]."', '".$_POST["postcontent"]."')";
 
 if ($conn->query($sql) === TRUE) {
   echo "Ieraksts '".$_POST["posttitle"]."' veiksmīgi pievienots!<br><br>";
