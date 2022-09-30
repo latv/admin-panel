@@ -53,6 +53,10 @@ h1 {
     background-color: #00a843;
 }
 
+#line {
+    margin-left: -20px;
+}
+
 #menu li {
     float: left;
     border-right: 1px solid #bbb;

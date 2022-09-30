@@ -33,6 +33,8 @@
 						echo '<span>Publicēts: ', $row["created_at"], '</span>';
 						echo '<div>', $row["content"], '</div>';
 					}
+					echo '<hr style="
+					margin-left: -20px;">';
 					echo "<h3>Komentāri<h3>";
 					$sql_comments = "SELECT * FROM comment WHERE post_id=" . $_GET["postid"] . " order by created_at DESC";
 					$result_comments = $conn->query($sql_comments);
@@ -73,7 +75,9 @@
 						echo '<h2><a href="index.php?id=', $pagerow["0"], '&postid=', $row["id"], '">', $row["title"], '</a></h2>';
 						// echo '<span>Publicēts: ', $row["created_at"], '</span>';
 						echo '<div>', $row["content"], '</div>';
+
 					}
+
 				} else {
 					echo "<h1>Nav tādu ierakstu! </h1>";
 				}

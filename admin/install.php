@@ -85,6 +85,8 @@ if ($conn->query($sql) === TRUE) {
 }
 } //beidzas pārbaude, vai tabula posts eksistē
 
+
+
 echo "Uzstādīšana veiksmīga!";
 
 ?>
